@@ -1,0 +1,36 @@
+var imageFiles = [];
+
+$.ajax({
+    url: "images/", 
+    async: false,
+    success: function(data) {
+        $(data).find("a:contains(.png)").each(function() {
+	    var image = $(this).attr("href");
+	    imageFiles.push(image);
+	    console.log(image);
+	});
+    }
+});
+
+
+var bgimages = document.getElementsByClassName("bgimage");
+var tags = document.getElementsByClassName("song/artist");
+
+var randomImages = [];
+
+/*
+for (var i = 0; i < bgimages.length; i++) {
+    var randInt = Math.floor(Math.random * imageFiles.length);
+    randomImages.push(imageFiles[randInt];
+    imageFiles.splice(randInt, 1);
+}
+*/
+
+randomImages.push(imageFiles[0]);
+console.log(imageFiles);
+
+for (var i = 0; i < bgimages.length; i++) {   
+    bgimages[i].setAttribute("src", "images/"+imageFiles[0]);
+    tags[i].innerHTML = "artist name";
+}
+
